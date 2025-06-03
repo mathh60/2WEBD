@@ -310,3 +310,7 @@ h1, h2, h3, p, a {
     font-size: 1.6rem;
   }
 }
+
+.advanced-search-container {
+  margin-top: 100px; /* ou padding-top: 100px; selon la structure */
+}
