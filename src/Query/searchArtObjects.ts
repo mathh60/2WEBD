@@ -1,4 +1,4 @@
-import fetchArtObject from './fetchArtObject'; // Importez fetchArtObject
+import fetchArtObject from './fetchArtObject'; 
 
 interface ArtObject {
   objectID: number;

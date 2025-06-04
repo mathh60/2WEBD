@@ -25,24 +25,8 @@ const DisplayHighlightContent: React.FC<DisplayHighlightContentProps> = ({
   onSearch,
   loading,
 }) => {
-  const [loadingImages, setLoadingImages] = useState<{ [key: number]: boolean }>({});
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 4;
-
-  const handleImageLoad = (id: number) => {
-    setLoadingImages((prev) => ({ ...prev, [id]: false }));
-  };
-
-  const handleImageError = (id: number) => {
-    setLoadingImages((prev) => ({ ...prev, [id]: false }));
-  };
-
-  const renderPlaceholder = () => (
-    <div className="art-item placeholder placeholder-art-item">
-      <div className="placeholder-image"></div>
-      <div className="placeholder-text"></div>
-    </div>
-  );
 
   const paginate = (items: ArtObject[], page: number) => {
     const startIndex = (page - 1) * itemsPerPage;
@@ -61,15 +45,6 @@ const DisplayHighlightContent: React.FC<DisplayHighlightContentProps> = ({
   const paginatedItems = paginate(displayItems, currentPage);
 
   useEffect(() => {
-    paginatedItems.forEach((artObject) => {
-      const img = new Image();
-      img.onload = () => handleImageLoad(artObject.objectID);
-      img.onerror = () => handleImageError(artObject.objectID);
-      img.src = artObject.primaryImage;
-    });
-  }, [paginatedItems]);
-
-  useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm]);
 
@@ -86,34 +61,39 @@ const DisplayHighlightContent: React.FC<DisplayHighlightContentProps> = ({
         <button onClick={onSearch}>Search</button>
       </div>
       <div className="text-center">
-        {loading
-          ? (
-            <div className="art-list">
-              {Array.from({ length: itemsPerPage }).map((_, index) => (
-                <div key={index}>{renderPlaceholder()}</div>
-              ))}
-            </div>
-          ) : (
-            <div className="art-list">
-              {paginatedItems.map((artObject) => (
-                <Link key={artObject.objectID} to={`/object/${artObject.objectID}`}>
-                  <div className="art-item">
+        {loading ? (
+          <div className="art-list">
+            {Array.from({ length: itemsPerPage }).map((_, index) => (
+              <div key={index} className="art-item placeholder">
+                <div className="placeholder-image"></div>
+                <div className="placeholder-text"></div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="art-list">
+            {paginatedItems.map((artObject) => (
+              <Link
+                key={artObject.objectID}
+                to={`/object/${artObject.objectID}`}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <div className="art-item">
+                  {artObject.primaryImage ? (
                     <img
                       src={artObject.primaryImage}
                       alt={artObject.title}
-                      onLoad={() => handleImageLoad(artObject.objectID)}
-                      onError={() => handleImageError(artObject.objectID)}
-                      style={{ display: loadingImages[artObject.objectID] ? "none" : "block" }}
+                      style={{ width: "100%", height: "auto", maxHeight: "200px", objectFit: "cover" }}
                     />
-                    <h3>{artObject.title}</h3>
-                    {loadingImages[artObject.objectID] && (
-                      <div className="placeholder-image"></div>
-                    )}
-                  </div>
-                </Link>
-              ))}
-            </div>
-          )}
+                  ) : (
+                    <div className="placeholder-image"></div>
+                  )}
+                  <h3>{artObject.title}</h3>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
         <div className="pagination">
           <button onClick={handlePrevPage} disabled={currentPage === 1}>
             Précédent

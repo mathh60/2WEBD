@@ -21,11 +21,9 @@ const DisplayHighlight: React.FC = () => {
       try {
         setLoading(true); 
         const objectIDs = [100, 200, 300, 400, 500, 150, 245, 350, 50, 1, 25, 65];
-        const objectsData: ArtObject[] = [];
-        for (const id of objectIDs) {
-          const objectData = await fetchArtObject(id);
-          objectsData.push(objectData);
-        }
+        // Lance tous les fetch en parallèle pour accélérer le chargement
+        const fetchPromises = objectIDs.map(id => fetchArtObject(id));
+        const objectsData = await Promise.all(fetchPromises);
         setArtObjects(objectsData);
       } catch (error) {
         console.error("Error fetching data:", error);
