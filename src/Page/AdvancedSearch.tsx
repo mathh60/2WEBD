@@ -21,21 +21,17 @@ const AdvancedSearch: React.FC = () => {
 
   const handleSearch = async () => {
     try {
-      setLoading(true);
-      setHasSearched(true);
-      const queryParams = new URLSearchParams();
-      if (title) queryParams.append("title", title);
-      if (artistDisplayName) queryParams.append("artistDisplayName", artistDisplayName);
-      if (accessionYear) queryParams.append("accessionYear", accessionYear);
-
-      const objectsData = await advancedSearch(queryParams);
-      setAllResults(objectsData);
+        setLoading(true);
+        setHasSearched(true);
+        // Appel direct avec les 3 paramètres
+        const objectsData = await advancedSearch(title, artistDisplayName, accessionYear);
+        setAllResults(objectsData);
     } catch (error) {
-      console.error("Error searching data:", error);
+        console.error("Error searching data:", error);
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
-  };
+};
 
   // Séparation des résultats exacts et similaires
   const exactResults = allResults.filter(obj => {
