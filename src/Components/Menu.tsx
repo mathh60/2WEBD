@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/Logo.png"; // adapte le chemin si besoin
+import Logo from "../../Logo.png"; // adapte le chemin si besoin
 import "../App.css";
 
 const Menu: React.FC = () => {
