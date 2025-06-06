@@ -11,7 +11,6 @@ const advancedSearch = async (
     artistDisplayName: string,
     accessionYear: string
 ): Promise<ArtObject[]> => {
-    // Concatène tous les champs non vides dans une seule string de recherche
     const q = [title, artistDisplayName, accessionYear].filter(Boolean).join(" ");
     const searchResponse = await fetch(
         `https://collectionapi.metmuseum.org/public/collection/v1/search?q=${encodeURIComponent(q)}`

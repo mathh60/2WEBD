@@ -23,7 +23,6 @@ const AdvancedSearch: React.FC = () => {
     try {
         setLoading(true);
         setHasSearched(true);
-        // Appel direct avec les 3 paramètres
         const objectsData = await advancedSearch(title, artistDisplayName, accessionYear);
         setAllResults(objectsData);
     } catch (error) {
@@ -33,7 +32,6 @@ const AdvancedSearch: React.FC = () => {
     }
 };
 
-  // Séparation des résultats exacts et similaires
   const exactResults = allResults.filter(obj => {
     let ok = true;
     if (title) ok = ok && obj.title.trim().toLowerCase() === title.trim().toLowerCase();

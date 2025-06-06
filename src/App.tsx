@@ -13,15 +13,19 @@ const router = createBrowserRouter([
     path: '/',
     errorElement: (
       <div>
-        Page non trouvée
+        Page not found
         <br />
-        <a href="/">Retour à l'accueil</a>
+        <a href="/">Back to home</a>
       </div>
     ),
     element: (
       <div>
-        <Menu />
-        <Outlet />
+        <div className="menu">
+          <Menu />
+        </div>
+        <div className="main-content">
+          <Outlet />
+        </div>
       </div>
     ),
     children: [

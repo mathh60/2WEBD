@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../Logo.png"; // adapte le chemin si besoin
+import Logo from "../../Logo.png"; 
 import "../App.css";
 
 const Menu: React.FC = () => {
@@ -16,7 +16,7 @@ const Menu: React.FC = () => {
           </Link>
         </div>
         <Link to="/advanced-search" className="navbar-link">
-          Recherche Avancée
+          Advanced Search
         </Link>
       </div>
     </nav>

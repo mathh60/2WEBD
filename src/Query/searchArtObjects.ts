@@ -1,4 +1,4 @@
-import fetchArtObject from './fetchArtObject'; 
+import fetchArtObject from "./fetchArtObject";
 
 interface ArtObject {
   objectID: number;
@@ -7,7 +7,9 @@ interface ArtObject {
 }
 
 const searchArtObjects = async (searchTerm: string): Promise<ArtObject[]> => {
-  const searchResponse = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?q=${searchTerm}`);
+  const searchResponse = await fetch(
+    `https://collectionapi.metmuseum.org/public/collection/v1/search?q=${searchTerm}`
+  );
   if (!searchResponse.ok) {
     throw new Error("Failed to search object");
   }

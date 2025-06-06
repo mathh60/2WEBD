@@ -14,30 +14,34 @@ const DisplayHighlight: React.FC = () => {
   const [artObjects, setArtObjects] = useState<ArtObject[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [searchResults, setSearchResults] = useState<ArtObject[]>([]);
-  const [loading, setLoading] = useState<boolean>(false); 
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    const fetchArtObjects = async () => {
+    const fetchFeaturedArtObjects = async () => {
       try {
-        setLoading(true); 
-        const objectIDs = [100, 200, 300, 400, 500, 150, 245, 350, 50, 1, 25, 65];
-        // Lance tous les fetch en parallèle pour accélérer le chargement
-        const fetchPromises = objectIDs.map(id => fetchArtObject(id));
+        setLoading(true);
+        
+        const res = await fetch(
+          "https://collectionapi.metmuseum.org/public/collection/v1/objects?isHighlight=true"
+        );
+        const data = await res.json();
+        const objectIDs: number[] = data.objectIDs ? data.objectIDs.slice(0, 12) : [];
+        const fetchPromises = objectIDs.map((id) => fetchArtObject(id));
         const objectsData = await Promise.all(fetchPromises);
         setArtObjects(objectsData);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching highlighted objects:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchArtObjects();
+    fetchFeaturedArtObjects();
   }, []);
 
   const handleSearch = async () => {
     try {
-      setLoading(true); 
+      setLoading(true);
       const objectsData = await searchArtObjects(searchTerm);
       setSearchResults(objectsData);
     } catch (error) {
@@ -55,7 +59,7 @@ const DisplayHighlight: React.FC = () => {
         searchResults={searchResults}
         onSearchTermChange={setSearchTerm}
         onSearch={handleSearch}
-        loading={loading} 
+        loading={loading}
       />
     </div>
   );

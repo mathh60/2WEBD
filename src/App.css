@@ -1,26 +1,22 @@
-/* CSS Complet Final pour Metropolitan Museum of Art */
-
-/* Variables pour la personnalisation */
 :root {
   --primary-color: #1e293b;
   --secondary-color: #ffffff;
-  --accent-color: #775436; /* Teinte marron dorée pour une ambiance musée */
+  --accent-color: #775436;
   --accent-color-hover: #5e4229;
   --accent-light: #d4be9c;
   --text-primary: #333333;
   --text-secondary: #6c757d;
   --text-light: #f8f9fa;
-  --background-light: #f5f3f0; /* Teinte légèrement crème */
+  --background-light: #f5f3f0;
   --card-background: #ffffff;
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.12);
   --transition: all 0.3s ease;
   --border-radius: 4px;
-  --font-serif: 'Playfair Display', Georgia, serif;
-  --font-sans: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Open Sans", "Helvetica Neue", Arial, sans-serif;
 }
 
-/* Reset et styles de base */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -29,8 +25,8 @@
 
 .navbar {
   background: #fff;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
-  padding: 0;            /* plus de padding */
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+  padding: 0;
   margin: 0;
 }
 
@@ -40,7 +36,7 @@
   height: 82px;
   width: 100%;
   position: relative;
-  padding: 0;            /* plus de padding */
+  padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
@@ -48,7 +44,7 @@
 .logo-link {
   display: flex;
   align-items: center;
-  margin-left: 6px;      /* mini espace avec le bord */
+  margin-left: 6px;
   margin-right: 0;
   height: 100%;
 }
@@ -82,7 +78,7 @@
   text-decoration: none;
   font-size: 1.15rem;
   margin-left: auto;
-  margin-right: 6px;     /* mini espace avec le bord droit */
+  margin-right: 6px;
   padding-right: 0;
   transition: color 0.18s;
 }
@@ -118,7 +114,6 @@ body {
   line-height: 1.5;
 }
 
-/* CORRECTION: Navigation barre */
 .navbar {
   background: linear-gradient(to right, #1e293b, #334155);
   width: 100%;
@@ -151,13 +146,12 @@ body {
   padding: 0;
 }
 
-/* Titre Metropolitan Museum of Art - Centré et mis en évidence */
 .navbar-brand {
   color: #ffffff !important;
   font-size: 2.2rem;
   font-weight: 600;
   text-decoration: none;
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: "Playfair Display", Georgia, serif;
   letter-spacing: 0.5px;
   text-align: center;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
@@ -165,7 +159,6 @@ body {
   transition: var(--transition);
 }
 
-/* Lien Recherche Avancée - Stylisé comme un bouton à droite */
 .navbar-link {
   color: #a9c6e2 !important;
   font-size: 1.1rem;
@@ -182,24 +175,39 @@ body {
   text-decoration: none;
 }
 
-/* Layout et conteneur */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
-
-.main-content {
-  padding: 0;
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  height: 60px; /* Ajuste selon la hauteur réelle de ta navbar */
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
 }
 
-/* Force l'affichage de tout texte */
-h1, h2, h3, p, a {
+.main-content {
+  margin-top: 60px;
+  padding: 16px;
+}
+
+h1,
+h2,
+h3,
+p,
+a {
   visibility: visible !important;
   opacity: 1 !important;
 }
 
-/* Barre de recherche améliorée */
 .search-bar {
   display: flex;
   justify-content: center;
@@ -243,12 +251,10 @@ h1, h2, h3, p, a {
   background-color: var(--accent-color-hover);
 }
 
-/* Masquage du titre redondant dans le contenu */
 .App h1 {
   display: none;
 }
 
-/* Grille d'affichage avec images de tailles identiques */
 .art-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -275,7 +281,6 @@ h1, h2, h3, p, a {
   box-shadow: var(--shadow-hover);
 }
 
-/* Images de taille fixe et identique */
 .art-item img {
   width: 100%;
   height: 250px;
@@ -283,7 +288,6 @@ h1, h2, h3, p, a {
   object-position: center;
 }
 
-/* Titres des items */
 .art-item h3 {
   font-size: 1rem;
   color: var(--accent-color) !important;
@@ -300,7 +304,6 @@ h1, h2, h3, p, a {
   display: block;
 }
 
-/* Détail d'objet */
 .object-details-container {
   padding: 20px;
   max-width: 1200px;
@@ -324,7 +327,6 @@ h1, h2, h3, p, a {
   margin-bottom: 10px;
 }
 
-/* Pagination */
 .pagination {
   margin: 20px 0;
   text-align: center;
@@ -350,16 +352,15 @@ h1, h2, h3, p, a {
   cursor: not-allowed;
 }
 
-/* Media queries pour responsivité */
 @media (max-width: 768px) {
   .art-list {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .navbar-brand {
     font-size: 1.8rem;
   }
-  
+
   .navbar-link {
     font-size: 1rem;
     padding: 6px 12px;
@@ -370,30 +371,30 @@ h1, h2, h3, p, a {
   .art-list {
     grid-template-columns: 1fr;
   }
-  
+
   .search-bar {
     flex-direction: column;
     width: 90%;
   }
-  
+
   .search-bar input[type="text"],
   .search-bar button {
     width: 100%;
     margin-bottom: 10px;
     border-radius: 4px;
   }
-  
+
   .navbar-container {
     flex-direction: column;
     gap: 15px;
     padding: 15px;
   }
-  
+
   .navbar-brand {
     font-size: 1.6rem;
   }
 }
 
 .advanced-search-container {
-  margin-top: 100px; /* ou padding-top: 100px; selon la structure */
+  margin-top: 100px;
 }

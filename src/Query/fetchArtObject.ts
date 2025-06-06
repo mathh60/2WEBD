@@ -18,3 +18,4 @@ interface ArtObject {
   };
   
   export default fetchArtObject;
+  

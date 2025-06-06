@@ -96,13 +96,13 @@ const DisplayHighlightContent: React.FC<DisplayHighlightContentProps> = ({
         )}
         <div className="pagination">
           <button onClick={handlePrevPage} disabled={currentPage === 1}>
-            Précédent
+            Previous
           </button>
           <button
             onClick={handleNextPage}
             disabled={currentPage * itemsPerPage >= displayItems.length}
           >
-            Suivant
+            Next
           </button>
         </div>
       </div>
